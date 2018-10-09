@@ -31,6 +31,8 @@ sudo apt-get update
 sudo apt-get install arangodb3=3.3.17
 ```
 
+Now create a database and optionally user for the testing.
+
 ### Code Setup
 
 
@@ -39,8 +41,18 @@ apt install python3-pip
 pip3 install arango-orm
 ```
 
-Copy the code to the server if needed
+You can adjust the connection credentials in db_credentials.py
+
+## Creating the Graph and Models
 
 ```bash
-scp * user@my_server:~/arango_tester/
+python3 main.py create_structure
+```
+
+## Populate the models
+
+Inserting a million random records into the logs collection.
+
+```bash
+python3 main.py populate logs 1000000
 ```

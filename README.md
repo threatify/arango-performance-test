@@ -33,6 +33,21 @@ sudo apt-get install arangodb3=3.3.17
 
 Now create a database and optionally user for the testing.
 
+### Cluster Setup
+
+```bash
+# on tf-api
+arangodb --server.storage-engine=rocksdb --starter.address=10.131.78.29 \
+         --starter.data-dir=./arango_data \
+         --starter.join=arrangodb-4vcpu-8gb-ams3-01,arrangodb-4vcpu-8gb-ams3-02,arrangodb-4vcpu-8gb-ams3-03
+
+# On tf-ar01
+arangodb --starter.data-dir=./arango_data --starter.join 10.131.78.29
+
+# On tf-ar02
+arangodb --starter.data-dir=./arango_data --starter.join 10.131.78.29
+```
+
 ### Code Setup
 
 

@@ -22,22 +22,12 @@ class Subject(Collection):
 
     _key = String(required=True)  # subject code
     name = String(required=True)
-    credit_hours = Integer()
-    has_labs = Boolean(missing=True)
 
 
 class Area(Collection):
     __collection__ = 'areas'
 
     _key = String(required=True)  # area name
-
-
-class SpecializesIn(Relation):
-    __collection__ = 'specializes_in'
-
-    expertise_level = String(required=True,
-                             options=["expert", "medium", "basic"])
-    _key = String(required=True)
 
 
 class Log(Collection):
@@ -55,15 +45,12 @@ class UniversityGraph(Graph):
         # Using general Relation class for relationship
         GraphConnection(Student, Relation("studies"), Subject),
         GraphConnection(Teacher, Relation("teaches"), Subject),
-        GraphConnection(Teacher, Relation("teacher"), Student),
-
         # Using specific classes for vertex and edges
-        GraphConnection(Teacher, SpecializesIn, Subject),
         GraphConnection([Teacher, Student], Relation("resides_in"), Area)
 
     ]
 
 
 all_db_objects = [
-    Student, Teacher, Subject, Area, SpecializesIn, UniversityGraph, Log
+    Student, Teacher, Subject, Area, UniversityGraph, Log
 ]

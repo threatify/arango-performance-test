@@ -1,8 +1,7 @@
 """Graph database client."""
 
 from arango import ArangoClient
-
-from arango_orm.database import Database
+from arango_orm import Database, ConnectionPool
 
 
 class Connection(object):
@@ -15,6 +14,15 @@ class Connection(object):
         _db = client.db(dbname, username=username, password=password)
 
         self.db = Database(_db)
+
+    def cluster_connect(self, hosts,  # pylint: disable=R0913
+                        port, username, password, dbname):
+        """Connect to a cluster using connection pooler."""
+        clients = []
+        for host in hosts:
+            clients.append(ArangoClient(protocol='http', host=host, port=port))
+
+        self.db = ConnectionPool(clients, dbname, username, password)
 
     def create_all(self, db_objects):
         self.db.create_all(db_objects)

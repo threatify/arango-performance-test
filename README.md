@@ -86,14 +86,14 @@ Dump size uncompressed: 34GB
 
 ### Records per collection
 
-areas: 50,000
-logs: 148,003,029
-resides_in: 15,744,002
-students: 10,000,000
-studies: 6,497,555
-subjects: 20,000
-teachers: 100,000
-teaches: 6,502,445
+* areas: 50,000
+* logs: 148,003,029
+* resides_in: 15,744,002
+* students: 10,000,000
+* studies: 6,497,555
+* subjects: 20,000
+* teachers: 100,000
+* teaches: 6,502,445
 
 ## Queries
 
